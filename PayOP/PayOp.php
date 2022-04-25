@@ -37,7 +37,11 @@ class PayOp
         $this->signature = new Signature();
     }
 
-    public function makeRefund(Refund $data)
+    /**
+     * @param Refund $data
+     * @return Response
+     */
+    public function makeRefund(Refund $data): Response
     {
         return $this->post($this->config->makeUrlForApi('/refunds/create'), $data->getData(), '', $this->getAuthorizationHeader());
     }
@@ -67,11 +71,14 @@ class PayOp
         return $this->post($this->config->makeUrlForApi('/invoices/create'), $data, $signature);
     }
 
+    /**
+     * @param $invoiceId
+     * @return Response
+     */
     public function getInvoice($invoiceId)
     {
         return $this->get($this->config->makeUrlForApi('/invoices', $invoiceId));
     }
-
 
     /**
      * @param string $url

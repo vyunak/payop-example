@@ -29,7 +29,7 @@ class Signature
      */
     public static function checkSignature(string $signatureRequest, array $data, string $key, $algorithm = 'sha256'): bool
     {
-        $signature = self::makeSignature(array_filter($data), $key, $algorithm);
+        $signature = self::makeSignature($data, $key, $algorithm);
 
         return $signatureRequest === $signature;
     }
